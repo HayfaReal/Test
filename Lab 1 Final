@@ -1,23 +1,18 @@
-
 import java.util.Scanner;
-
 public class First {
     public static void main(String[] args)  {
         Scanner sc = new Scanner(System.in);
         boolean isCorrectInput = false;
-        double S;
-        int m;
-        int n;
+        int m = 0;
+        int n = 0;
         double a;
         double b;
-
         while (!isCorrectInput){
-            System.out.print("Введите целое число m --> ");
+            System.out.print("Введите целое число Nm --> ");
             if (sc.hasNextInt()) {
                 m = sc.nextInt();
                 System.out.println("m is --> "+m);
                 isCorrectInput = true;
-
             } else {
                 System.out.println("Вы ввели не целое число,\nПопытайтесь снова!\n\n\t\t***\n");
                 sc.next();
@@ -30,24 +25,30 @@ public class First {
                 n = sc.nextInt();
                 System.out.println("n is --> "+n);
                 isCorrectInput = true;
-
             } else {
                 System.out.println("Вы ввели не целое число,\nПопытайтесь снова!\n\n\t\t***\n");
                 sc.next();
             }
         }
+        double S = 0;
+        double up;
+        double down;
+        double halfS = 0;
         for ( byte i=0 ;  i<n  ; i++ ){
-            a = (double) i;
-            System.out.println("i;"+i+" a:"+a);
+            a =  i;
+            int test = 0;
             for ( byte j=0 ; j<m ; j++){
-                b =(double) j;
-                System.out.println("j;"+j+" b:"+b);
-                break;
-
+                b = j;
+                up = a % b;
+                down = a + 0;
+                if ( down > 0 && up > 0 ){
+                    halfS = up / down;
+                }else test ++;
             }
-            break;
+            S += halfS;
+            if ( test > 0 ) System.out.println("Cycle №"+(i+1)+" <--> Division by zero(" + test + ')');
         }
-
+        System.out.println("\n S is : --> "+S);
         sc.close();
     }
 }
