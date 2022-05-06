@@ -1,0 +1,64 @@
+import random
+
+class lab_2:
+    def __init__(self, row, col):
+        self.rows = row
+        self.cols = col
+
+    def summa(self, m_x1, m_x2):
+        C = [[0] * self.rows for i in range(self.cols)]
+        for i in range(self.rows):
+            for j in range(self.cols):
+                C[i][j] = round(m_x1[i][j] + m_x2[i][j], 1)
+        return C
+
+    def print_m(self, matrix):
+        for i in range(self.rows):
+            print("-" * 8 * self.cols)
+            el_m = ""
+            for j in range(self.cols):
+                el_m += "| {:^4} |".format(matrix[i][j])
+            print(el_m)
+        print("-" * 7 * self.cols)
+
+    def create_matrix(self):  # cm = create_matrix
+        M = [[0] * self.rows for i in range(self.cols)]
+        for Mi_1 in range(self.rows):
+            for Mj_2 in range(self.cols):
+                M[Mi_1][Mj_2] = (round(random.uniform(0, 9), 1))
+        return M
+
+    def NoName(self, matrix):
+        summa_of_num = 0
+        for i in range(self.rows):
+            min_num = 20
+            max_num = -1
+            for j in range(self.cols):
+                if (i + 1) % 2 == 0:
+                    if min_num > matrix[i][j]:
+                        min_num = matrix[i][j]
+                else:
+                    if max_num < matrix[i][j]:
+                        max_num = matrix[i][j]
+            if min_num != 20:
+                summa_of_num += min_num
+            else:
+                summa_of_num += max_num
+        return summa_of_num
+m = input("Enter number of rows\n--> ")
+n = input("Enter number of cols\n--> ")
+if (m.isdigit() and n.isdigit()):
+    m = int(m)
+    n = int(n)
+    Matrix = lab_2(m, n)
+A = Matrix.create_matrix()
+B = Matrix.create_matrix()
+print("\nThis is a matrix named as A\n")
+Matrix.print_m(A)
+print("\nThis is a matrix named as B\n")
+Matrix.print_m(B)
+C = Matrix.summa(A, B)
+print("\nThis is a matrix named as C\n")
+Matrix.print_m(C)
+result = round(Matrix.NoName(C), 1)
+print("Resul of final operation is: {}".format(result))
